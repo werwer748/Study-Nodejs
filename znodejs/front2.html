@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+            /*
+            encodeURIComponent, decodeURIComponent
+            가끔 주소창에 한글 입력하면 서버가 처리하지 못하는 경우 발생
+            (encodeURIComponent로 한글 감싸줘서 처리)
+            */
+           (async () =>{
+               try{
+                   const result = await axios.get(`https://www.zerocho.com/api/search/
+                   ${encodeURIComponent('노드')}`);
+                   console.log(result);
+                   console.log(result.data); //{}
+               }
+               catch(err){
+                   console.log(err);
+               }
+           })();
+           /*
+           노드를 encodeURIComponent하면 %EB%85%B8%EB%93%9C가 됨
+           decodeURIComponent로 서버에서 한글 해석
+           decodeURIComponent('%EB%85%B8%EB%93%9C'); // 노드
+           */
+        </script>
+        <!--
+            HTML 태그에 데이터를 저장하는 방법
+            -서버의 데이터를 프런트엔드로 내려줄 떄 사용
+            -태그 속성으로 data-속성명
+            -자바스크립트에서 태그.dataset.속성명으로 접근 가능
+             ㄴ data-user-job -> dataset.userJob
+             ㄴ data-id -> dataset.id
+            -반대로 자바스크립트 dataset에 값을 넣으면 data-속성이 생김
+             ㄴ dataset.monthSalary = 10000 -> data-month-salary="10000"
+        -->
+        <ul>
+            <li data-id="1" data-user-job="programmger">Hugo</li>
+            <li data-id="2" data-user-job="designer">Kai</li>
+            <li data-id="3" data-user-job="programmger">Min</li>
+            <li data-id="4" data-user-job="ceo">Tom</li>
+        </ul>
+        <script>
+            console.log(document.querySelector('li').dataset);
+            //{id:'1', userJob: 'programmer'}
+        </script>
+    </body>
+</html>

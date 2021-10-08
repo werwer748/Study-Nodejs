@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+<button class="{{title}}" type="submit">전송</button>
+<input placeholder="{{title}} 연습" />
+{% set node = 'Node.js' %}
+{% set js = 'Javascript' %}
+<p>{{node}}와 {{js}}</p>
+<p>{{'<strong>이스케이프</strong>'}}</p>
+<p>{{'<strong>이스케이프하지 않음</strong>' | safe}}</p>
+<ul>
+    {% set fruits = ['사과','배','오렌지','바나나','복숭아'] %}
+    {% for item in fruits %}
+    <li>{{loop.index}}번째 {{item}}</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
